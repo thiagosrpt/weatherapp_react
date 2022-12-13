@@ -23,8 +23,7 @@ function App() {
 
  const fetchIpData = () => {
   setLoading(true);
-  const proxy = "https://cros-anywhere.herokuapp.com/";
-  fetch(`${[[proxy]]}${IP_API}`)
+  fetch(`${IP_API}`)
     .then((response) => {
       return response.json();
     })
@@ -41,14 +40,14 @@ function App() {
   //Gets user coordinates
   function getCoordinates(ip) {
     setLoading(true);
-    const location = `${IP_LOCATION_API}/${ip}`;
+    const location = `${IP_LOCATION_API}/${ip}/json`;
     fetch(location)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         const localData = {
-          value:    `${data.lat} ${data.lon}`,
+          value:    `${data.latitude} ${data.longitude}`,
           label:  `${data.city}, ${data.country}`,
         }
         handleOnSearchChange(localData);
@@ -95,7 +94,7 @@ function App() {
         const weatherResponse = await response[0].json();
         const forecastResponse = await response[1].json();
         setCurrentWeather({city: reRender.label, ...weatherResponse});
-        setForecast({city: reRender.label, ...weatherResponse});
+        setForecast({city: reRender.label, ...forecastResponse});
         setLoading(false)
       })
       .catch((err) => console.log(err))
@@ -112,6 +111,7 @@ function App() {
         const weatherResponse = await response[0].json();
         const forecastResponse = await response[1].json();
         setCurrentWeather({city: reRender.label, ...weatherResponse});
+        setForecast({city: reRender.label, ...forecastResponse});
         setLoading(false)
       })
       .catch((err) => console.log(err))

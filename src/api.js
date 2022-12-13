@@ -14,4 +14,4 @@ export const WEATHER_API_KEY = "be134b3b86dd115b3805bd164924c51b";
 
 
 export const  IP_API = "https://api.ipify.org?format=json";
-export const  IP_LOCATION_API = "http://ip-api.com/json";
+export const  IP_LOCATION_API = "http://ipapi.co";
