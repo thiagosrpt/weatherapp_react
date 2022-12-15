@@ -6,9 +6,10 @@ const Search = ({onSearchChange}) => {
 
     const [search, setSearch] = useState(null);
 
+    //documentation of geo API: https://geodb-cities-api.wirefreethought.com/docs/api/get-city-details#/
     const loadOptions = (inputValue) => {
         if(inputValue.length > 3) {
-            return fetch(`${GEO_API_URL}/cities?minPopulation=100000&namePrefix=${inputValue}`,
+            return fetch(`${GEO_API_URL}/cities?types=CITY&namePrefix=${inputValue}&limit=10&minPopulation=99999`,
             geoApiOptions)
             .then(response => response.json())
             .then((response) => {
